@@ -1,0 +1,214 @@
+Server Side Programming using Js 
+********************************
+1. dotenv module/package
+2. fs module/package (core module of node)
+3. http module (core module of node)
+4. mongoose module (connection mongo DB)
+5. express module (Framework package for Node)
+6. express router module (for routing)
+7. jwt module (json web token Api-Secure)
+8. multer module (image uploading)
+9. body-parser package (to handle Post data send from form)
+
+10. Template Package of Node Js.
+    Note :: Node is Purely
+    server side, programming Js Runtime Environment.
+    PL => JS.
+   Templating Means :-
+   laravel => Blade Template Engine
+   Django => gingerTechnique {% static %}
+   React => JSX Template
+   
+  but in php we can directly implement code 
+  in html script.
+  Node itself is not capable of writing the,
+  html script and there is not way you can interact
+  with dom.
+  hence we template Engine for Node
+  Node will take Js file with html code and parse 
+  them and re-render the code, in browser.
+	
+   View : React-front-End/AngularJs/Angular/VueJs/core html or Template Engine
+
+   Most Popular Template Engines:-
+  *********************************
+  1. pug
+  2. HandleBars
+  3. Mustache
+  4. Ejs (Embedded Javascript)
+  ...
+  ...
+  etc
+
+  Q1: IQ => Difference EJS and Jsx 
+     Both are using html + Js but Jsx in used in front End
+     and Ejs is used in Backend
+     Jsx => React/Angular/Vuejs
+     Ejs => Node/Express/Fastify
+      Framework of Node
+      ******************
+       1. Express 2. Fastify 3. Hapi
+       4. Koa 
+
+
+   Model (data or schema or Api or Query)
+   ******
+   let data = {
+	name : "Awnish",
+        class : "MBA",
+        isBack : "yes",
+        noOfBack: 4
+   }
+
+   for example:-
+    <h1> name = {data.name} </h1> =====> input => js code will replace => replace Output return to    Browser
+   controller :-
+   *************
+   All the Bussiness Logic will be written in,
+   Node Js in Controller.
+   controller => Js file where most important
+   code of Backend is Written
+   
+   controller main role is get the data from model     and pass to the view or vice versa.
+
+hence Node Follows MVC Archiecture ?
+IQ2 : what is MVC?
+      model : for database Operations.
+      view  : all the front end Part or UI 
+      Template (pug,ejs...)
+      controller : data transfer B/w M to V
+	  
+	  
+Date : 10-02-2023
+*******************
+    - Brief Introduction of GO4 (gang of four)
+	- As your experience increase, you would see multipe way, of writing the code.
+	
+	For Example:-
+	$() => Jquery
+	
+	1. $(document).ready()
+	2. (function(){
+		$('#btn').click();
+	});
+	3. jQuery(document).ready()
+	
+	for Example:-
+	
+	$(document).ready(function(){
+	
+	})
+	$(document).ready(doSomething)
+	
+	function doSomething(){
+	
+	}
+	
+	$(document).ready(()=>{
+	
+	
+	});
+	
+	$(document).ready((event)=>{
+	
+	
+	});
+	
+	$(document).ready(event=>event.preventDefault());
+	
+	Programming Paradigm:-
+	**********************
+	we know as Programming paradigm(no of way you can write the code in PL,)
+	1. procedural Programming => limitation 
+	2. Object Oriented Programming => limitation.
+	
+	These limitation of Object Oriented Programming system
+	was Redesigned by 4 cs developer (Team,gang)
+	
+	1990's  most of IT firms were using, OOps for Software Developement and Research.
+	When GO4 Research Books(thesis), OOps is not the best way of Making S/W.
+	GO4 they re-design the oops into a set of 23 codes 
+	"Re-usable component of Object Oriented Programming system".
+	There now called Design Patterns.
+	
+	
+	These are divided into categories
+	1. Structural DP.
+	2. Creational DP.
+	3. Behavioural DP.
+	
+	These Design Pattern are there in Every Programming Langauge.
+	
+	For Example:-
+    **************
+	Android => ListView => ArrayAdapter, BaseAdapter,CustomAdapter ...
+	
+	adapter is one of Design Pattern
+	
+    ********************************************	
+	https://github.com/EvilAnshu/design-patterns-JS/blob/master/docs.md#singletonjs
+	
+	
+	Nature of Node Js:-
+	************************
+	1. Asynchronous.
+	2. Single Threaded.
+	3. Server Side Runtime Environment.
+	4. V8-Engine Architecture
+	5. Event Driven 
+	6. Non Blocking
+	7. Background I/O Mechanism
+	8. highly effiecent.
+	9. mvc Archiecture or Mvc Design pattern.
+	
+	
+	HW :- Date/10/02/2023
+	*********************
+	1. watch vedios on Yotube for each topic.
+	2. make a Notes on it with Diagrams:-
+	3. sunday :- React Js Theory + Practicle.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+
+
+
+
+
+ 
+
+
+
+
+
