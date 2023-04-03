@@ -1183,6 +1183,446 @@ Here we are going to use two databases
 	})
 
 
+   Our Requirement is to create full functional application:-
+   project structure:-
+   1. config
+   2. controller
+   3. model
+   4. view
+   5. public
+   6. routes
+   7. index.js
+   8. package.json
+   9. package-lock.json
+   
+   Next Step:- Add dependencies 
+   {
+     "depedencies":{
+	   "express":"latest", ==> "fastify":"latest"
+	 }
+   }
+    
+	Adding Hot Reloading:-
+	using nodemon :-
+	local server with autoreloading feature.
+	
+	nodemon install
+	1. locally
+	   npm install nodemon
+	   or 
+	   
+	   {
+     "depedencies":{
+	   "express":"latest",
+	   "nodemon":"latest"
+	 }
+   }
+	   
+	  npm install.
+	  
+	2. globally
+	npm install --global nodemon
+	
+	nodemon.cmd 
+	nodemon.bat 
+	global path.
+	
+	npx nodemon index.js => server start.
+	node nodemon index.js
+	
+	in Order to Run using npm :-
+	locally :-
+	
+	1. open package.json
+	{ 
+	
+		"scripts":{
+		  "test":"node test for Error",
+		  "start":"node ./node_modules/nodemon/bin/nodemon.js index.js"
+		}
+	}
+	
+	globally :-
+	
+	1. open package.json
+	{ 
+	
+		"scripts":{
+		  "test":"node test for Error",
+		  "start":"node nodemon index.js"
+		}
+	}
+	
+	
+	index.js :-
+	
+	const express = require('express');
+	const app = express();
+	const port = process.env.PORT || '8080';
+	
+
+	app.listen(port,()=>{
+	   console.log(` server was started at port = ${port}`);
+	});
+	
+	
+    MVC Updated Version:-
+	********************
+	index.js or server.js 
+	***********************
+	const http = require('http');
+	const server = http.createServer();
+	const port = process.env.PORT || '8080';
+	server.listen(port,()=>{
+	   console.log(` server was started at port = ${port}`);
+	});
+     
+	app.js 
+	*******	
+	const express = require('express');
+	const app = express();
+	module.exports = app;
+	
+	require the app.js 
+	index.js or server.js 
+	************************
+	const http = require('http');
+	const app = require('./app');
+	
+	const server = http.createServer(app);
+	
+	const port = process.env.PORT || '8080';
+	server.listen(port,()=>{
+	   console.log(` server was started at port = ${port}`);
+	});
+	
+	
+	All EndPoints, in Api and url for get,post,put,patch,delete are managed by,
+	routes.
+	
+	Basic Routing:-
+	*****************
+	by default Route :-
+	app.get('/xyz-url',(req,res)=>{
+	
+	 res.send('get url');
+	});
+	
+	app.post('/xyz-url',(req,res)=>{
+	
+	 res.send('post url');
+	});
+	
+	Advance Routing :-
+	********************
+	express has inbuilt router.
+	routes
+	*******
+	  crud : studentRoute.js
+	  get 
+	  post
+	  put 
+	  delete
+	  crud : userRoute.js
+	  get => All user
+	  post
+	  put 
+	  delete 
+	  login => post + get 
+	  userVerification => user 
+	  forgetPassword => user
+	const router = express.Router();
+	
+	router.get('/xyz-url',(req,res)=>{
+	 res.send('get url');
+	});
+	router.post('/xyz-url',(req,res)=>{
+	 res.send('post url');
+	});
+	
+	module.export = router
+	
+	connecting app.js with routes :-
+	***********************************
+	1. app.js connect with router.
+	
+	const studentRoute = require('./studentRoute');
+	const userRoute = require('./userRoute');
+	
+	app.use('/student',studentRoute);
+	app.use('/users',userRoute);
+	
+	Adding Controller to Project:-
+	******************************
+	consider the code of routes 
+	
+	Before controller :-
+	
+	router.post('/xyz-url',(req,res,next)=>{
+	 res.send('post url');
+	});
+	
+	After controller :-
+	
+	StudentController.js 
+	//class level code 
+	or 
+	//function level        (next middleware or next closure can be used as callback)
+	                            |
+								|
+	const Student = {
+	getStudent: function(req,res,next){  
+	  //logic
+	}
+	
+	CreateStudent:function(req,res,next){
+		//logic
+	}
+	
+	UpdateStudent:function(req,res,next){
+		//logic
+	}
+	
+	DeleteStudent:function(req,res,next){
+		//logic
+	}
+	
+	}
+	
+	module.export = Student;
+	
+	connect with Route with controller:-
+	*************************************
+	const StudentController = require('./StudentController');
+	
+	router.get('/student-list',StudentController.getStudent);
+	router.post('/register',StudentController.createStudent);
+	router.put('/change-profile',StudentController.UpdateStudent);
+	router.delete('/delete-account',StudentController.DeleteStudent);
+	router.post('/xyz-url',);
+	
+	control flow of Express Application  or lifeycle Node express
+	******************************************************************
+	
+	npm ---> package.json ---> start ----> nodemon (not required in live server)---> index.js 
+	index.js---> config ----> app.js ----> use Middleware -----> router -----> controller
+	
+	Adding pages to the Node Application :-
+	***************************************
+	
+	 till now we are able to create, index.js,app.js,routes and controller 
+	 in the Node Application. 
+	 But Our Node Application may require static pages to be created.
+	 for this we can make a pages or static folder in project 
+     
+	 project structure :-
+	 ***********************
+	 
+	   1. config
+	   2. controller
+	   3. model
+	   4. view
+	   5. public
+	   6. routes
+	   7. index.js
+	   8. package.json
+	   9. package-lock.json
+	   10. pages <------------------This is pages folder (or static)
+	        |---------> index.html
+			|---------> about.html
+			|---------> contact.html
+			|---------> register.html
+			 ....
+			 ....n
+			 
+			 here we can make static folder name also.
+			 Note :: All the pages will be loaded in GET Request.
+			 
+	How to load pages in Node Js :-
+	*********************************
+	
+	const path = require('path');
+	
+	router.get('/home',function(req,res,next){
+	
+		let pagename = path.join(__dirname,"/pages/index.html");
+		res.sendFile(pagename);
+		
+	});
+	
+	Sending 404 Page 
+	**********************
+	fallback : fallback when response is ended without, expectation.
+	error.html
+	or 
+	404.html
+		<h1> 404 Page Not Found </h1>
+		
+		app.use('*',function(req,res,next){
+	
+		let pagename = path.join(__dirname,"/pages/404.html");
+		res.sendFile(pagename);
+		
+	});
+	
+	Adding controller to the Application :-
+	******************************************
+	
+	controller :- It seperated Bussiness logic from the Application.
+	it acts as middle man, B/w Model and view.
+	Controller takes the data from model and return to view.
+	and vice-versa.
+	
+	three ways of writing the controller
+	1. Normal Function or Anonymous function to reference.
+	2. Factory function or Factory Object.(Function as Object)
+	3. using classes or TypeScript.
+	
+	Normal Function as a controller :-
+	***********************************
+	
+	router.get('/home',HomeController.create());
+							|
+							|
+							|
+						  import/require
+							|
+							|------->package.json ---> "type":"module" or rename : .js to |   .mjs 
+							|
+							|-------> require ---> const HomeController = require('../Controller/HomeController');
+							|
+							|
+						    |
+							module.exports = create;
+							
+	function create(req,res,next){
+	    //Bussiness Logic...
+	}
+	
+	2. Factory Function :-
+	
+	const Student = {
+	 create : function(req,res,next){
+		// This is logic
+		next()
+	 },
+	 update : function(req,res,next){
+		// This is logic
+	   
+	   next()
+	 },
+	 delete : function(req,res,next){
+	 
+		// This is logic
+		
+		next();
+	 }
+	
+	}
+   
+   How to call:-
+   Student.create();
+   
+   How to export :-
+   module.exports = Student;
+   
+   
+   
+   
+   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			 
+			 
+	   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 

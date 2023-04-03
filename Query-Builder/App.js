@@ -1,28 +1,55 @@
+const fs = require('fs');
+const qs = require('querystring');
+const Query = require('./Query');
+
 
 const app = (req,res)=>{
     res.writeHead(200,{
         "Content-Type":"text/html"
     });
-    res.write('Welcome');
-    res.end();
-}
-const router = {
-    get:function(url,controllerName){
-        console.log('get method'+url);
-        console.log(controllerName());
-    },
-    post:function(url,controllerName){
-        console.log('post method'+url);
-        console.log(controllerName());
+    
+    let filename = '';
+
+    switch(req.url){
+
+        case '/student-form':
+            filename = 'index';
+        break;
+
+        case '/create-student':
+            if(req.method.toUpperCase() == 'POST'){  
+
+                req.on('data',(data)=>{
+                   let studentData =qs.parse(data.toString());
+                   console.log(Query.insertRecord('student',studentData));
+                  
+                });
+         
+            }else{
+                res.write('page submiited with GET');
+            }
+           
+            res.end();
+        break;
+
+        default:
+            res.write('Welcome');
+            res.end();
+        break;
+
     }
+
+    fs.readFile("./view/"+filename+".html",(error,data)=>{
+       if(error == null){
+           res.write(data);
+           res.end();
+       }
+    });
+
+
+    
+
 }
 
-router.get('/get-student',function(){
-    return 'student will be get';
-})
-
-router.post('/create-student',function(){
-    return 'student will be created';
-})
 
 module.exports = app;
