@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+</head>
+<style>
+    #outer {
+        margin: 10px auto;
+        height: 500px;
+        width: 700px;
+        border: 1px solid black;
+    }
+
+    #left {
+        height: 500px;
+        width: 40%;
+        float: left;
+        box-sizing: border-box;
+        border: 1px solid black;
+    }
+
+    #left p {
+        font-size: 20px;
+        /* font-weight: 900; */
+    }
+
+    #top {
+        height: 50%;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid black;
+    }
+
+    #bottom {
+        height: 50%;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid black;
+    }
+
+    #right {
+        height: 500px;
+        width: 60%;
+        float: left;
+        box-sizing: border-box;
+        border: 1px solid black;
+    }
+
+    #grid {
+
+        grid-template-columns: 100px 50px 100px;
+        grid-template-rows: 80px auto 80px;
+        column-gap: 10px;
+        row-gap: 15px;
+
+    }
+
+    #cart {
+        margin: 10px 20px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <div id="outer">
+        <div id="left">
+            <div id="top" align="center">
+                <h1>Filter By</h1>
+                <p>
+                    <input id="price" type="checkbox" value="price" name="price" onclick="handleCheckBox('price')"/> Price
+                </p>
+                <p>
+                    <input id="brand" type="checkbox" value="brand" name="brand" onclick="handleCheckBox('brand')"/> Brand
+                </p>
+            </div>
+            <div id="bottom" align="center">
+                <h1>Sort By</h1>
+                <p>
+                    <input type="radio" value="dec" name="sortBy" /> High To Low
+                </p>
+                <p>
+                    <input type="radio" value="asec" name="sortBy" /> Low To High
+                </p>
+            </div>
+        </div>
+        <div id="right">
+            <div align="center">
+                <h1>Product List</h1>
+            </div>
+            <div id="grid">
+                <div id="cart">
+                    <p>Name : </p>
+                    <p>Price : </p>
+                    <p>Brand : </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        "use strict";
+
+        var price = $("#price");
+        var brand = $("#brand");
+        let data=[];
+        function handleCheckBox(element){
+            if(element == price.value && price.checked){
+                data.push(element);
+            }
+            else if(element == brand.value && brand.checked){
+                data.push(element);
+            }
+            else if(element == brand.value && !brand.checked){
+                data = data.filter(value=> value!=element)
+            }
+            else if(element == price.value && !price.checked){
+                data = data.filter(value=> value!=element)
+            }
+            console.log(data);
+        }
+
+
+
+        function $(selector){
+            return document.querySelector(selector);
+        }
+  
+    </script>
+</body>
+
+</html>
