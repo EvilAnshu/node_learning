@@ -73,10 +73,16 @@
             <div id="top" align="center">
                 <h1>Filter By</h1>
                 <p>
-                    <input id="price" type="checkbox" value="price" name="price" onclick="handleCheckBox('price')"/> Price
+                    <input id="price" type="checkbox" value="price" name="price" onclick="handleCheckBox('price')" />
+                    Price
                 </p>
                 <p>
-                    <input id="brand" type="checkbox" value="brand" name="brand" onclick="handleCheckBox('brand')"/> Brand
+                    <input id="brand" type="checkbox" value="brand" name="brand" onclick="handleCheckBox('brand')" />
+                    Brand
+                </p>
+                <p>
+                    Brand Name : 
+                    <input id="brand" type="text" />
                 </p>
             </div>
             <div id="bottom" align="center">
@@ -86,6 +92,9 @@
                 </p>
                 <p>
                     <input type="radio" value="asec" name="sortBy" /> Low To High
+                </p>
+                <p> Price Selector :
+                    <input type="range" id="priceSelector" value="50" step="10" min="5" max="100" onchange="getPrice()"/>
                 </p>
             </div>
         </div>
@@ -107,29 +116,31 @@
 
         var price = $("#price");
         var brand = $("#brand");
-        let data=[];
-        function handleCheckBox(element){
-            if(element == price.value && price.checked){
+        let data = [];
+        function handleCheckBox(element) {
+            if (element == price.value && price.checked) {
                 data.push(element);
             }
-            else if(element == brand.value && brand.checked){
+            else if (element == brand.value && brand.checked) {
                 data.push(element);
             }
-            else if(element == brand.value && !brand.checked){
-                data = data.filter(value=> value!=element)
+            else if (element == brand.value && !brand.checked) {
+                data = data.filter(value => value != element)
             }
-            else if(element == price.value && !price.checked){
-                data = data.filter(value=> value!=element)
+            else if (element == price.value && !price.checked) {
+                data = data.filter(value => value != element)
             }
             console.log(data);
         }
+        function getPrice(){
+            let price = $("#")
+        }
 
 
-
-        function $(selector){
+        function $(selector) {
             return document.querySelector(selector);
         }
-  
+
     </script>
 </body>
 
