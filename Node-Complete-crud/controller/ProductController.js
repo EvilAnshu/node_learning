@@ -227,6 +227,16 @@ const ProductController = {
      }
      
 
+   },
+   searchProduct:function(req,res,next){
+    // console.log(req.body);
+ 
+    for(itemKey in req.body){
+      if(itemKey != "sort"){
+        console.log(itemKey);
+      }
+      
+    }
    }
 }
 

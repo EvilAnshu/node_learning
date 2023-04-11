@@ -15,6 +15,7 @@ const upload = multer({dest:"public/uploads"});
 
 router.get('/upload',ProductController.uploadSingleImageForm);
 router.post('/upload',upload.single('pic'),ProductController.uploadFile);
+router.get('/search',ProductController.searchProduct);
 
 router.get('/',ProductController.getProducts);
 router.get('/:id',ProductController.getSingleProduct);

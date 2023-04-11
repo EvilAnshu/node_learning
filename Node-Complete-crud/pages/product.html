@@ -49,6 +49,14 @@
         box-sizing: border-box;
         border: 1px solid black;
     }
+    #applyFilter{
+        height: 25px;
+        background: rgb(0, 149, 255);
+        color: white;
+        border:none;
+        transform: translateY(-8px);
+        border-radius: 5px;
+    }
 
     #grid {
 
@@ -60,6 +68,7 @@
     }
 
     #cart {
+        width: 45%;
         margin: 10px 20px;
         padding: 5px 10px;
         box-sizing: border-box;
@@ -75,26 +84,28 @@
                 <p>
                     <input id="price" type="checkbox" value="price" name="price" onclick="handleCheckBox('price')" />
                     Price
-                </p>
-                <p>
+               <br/>
                     <input id="brand" type="checkbox" value="brand" name="brand" onclick="handleCheckBox('brand')" />
                     Brand
                 </p>
                 <p>
-                    Brand Name : 
-                    <input id="brand" type="text" />
+                    Brand Name :
+                    <input id="brandName" type="text" value="" onkeyup="getBrandName(this)" />
+                    
                 </p>
+                <input id="applyFilter" type="button" onclick="search()" value="Apply Filter">
             </div>
             <div id="bottom" align="center">
                 <h1>Sort By</h1>
                 <p>
-                    <input type="radio" value="dec" name="sortBy" /> High To Low
+                    <input type="radio" value="-1" name="sortBy" /> High To Low
                 </p>
                 <p>
-                    <input type="radio" value="asec" name="sortBy" /> Low To High
+                    <input type="radio" value="1" name="sortBy" /> Low To High
                 </p>
                 <p> Price Selector :
-                    <input type="range" id="priceSelector" value="50" step="10" min="5" max="100" onchange="getPrice()"/>
+                    <input type="range" id="priceSelector" value="50" step="10" min="5" max="100"
+                        onchange="getPrice(this)" />
                 </p>
             </div>
         </div>
@@ -132,9 +143,32 @@
             }
             console.log(data);
         }
-        function getPrice(){
-            let price = $("#")
+        function getPrice(priceSelector) {
+            console.log(priceSelector.value)
         }
+        function getBrandName(brandna) {
+            console.log(brandna.value)
+        }
+
+
+        function search(){
+        //Api Hit
+        fetch("http://localhost:8080/products/search",{
+            method:"POST",
+            headers:{
+                "Content-Type":"appliaction/json;charset=utf-8"
+            },
+            body:JSON.stringify(searchObject)
+        }).then((response)=>{
+            if(response.ok){
+                return response.json();
+            }
+            else{
+                console.log(response);
+                return response.json();
+            }
+        })
+    }
 
 
         function $(selector) {
