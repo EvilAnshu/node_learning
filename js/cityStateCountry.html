@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // Array of country objects
+var countries = [
+  {
+    name: "United States",
+    states: [
+      {
+        name: "California",
+        cities: ["Los Angeles", "San Francisco", "San Diego"]
+      },
+      {
+        name: "New York",
+        cities: ["New York City", "Buffalo", "Rochester"]
+      },
+      {
+        name: "Texas",
+        cities: ["Houston", "Dallas", "Austin"]
+      }
+      // Add more states and cities as needed
+    ]
+  },
+  {
+    name: "United Kingdom",
+    states: [
+      {
+        name: "England",
+        cities: ["London", "Manchester", "Birmingham"]
+      },
+      {
+        name: "Scotland",
+        cities: ["Edinburgh", "Glasgow", "Aberdeen"]
+      },
+      {
+        name: "Wales",
+        cities: ["Cardiff", "Swansea", "Newport"]
+      }
+      // Add more states and cities as needed
+    ]
+  }
+  // Add more countries as needed
+];
+
+    </script>
+</head>
+<body>
+    <!-- HTML code -->
+<label for="country">Country:</label>
+<select id="country" onchange="updateStateDropdown()">
+  <option value="">Select Country</option>
+  <!-- Populate country options dynamically -->
+  <script>
+    var countryDropdown = document.getElementById("country");
+    countries.forEach(function(country) {
+      var option = document.createElement("option");
+      option.text = country.name;
+      countryDropdown.add(option);
+    });
+  </script>
+</select>
+
+<label for="state">State:</label>
+<select id="state" onchange="updateCityDropdown()">
+  <option value="">Select State</option>
+</select>
+
+<label for="city">City:</label>
+<select id="city">
+  <option value="">Select City</option>
+</select>
+
+<script>
+  function updateStateDropdown() {
+    var countryDropdown = document.getElementById("country");
+    var stateDropdown = document.getElementById("state");
+    var cityDropdown = document.getElementById("city");
+
+    stateDropdown.length = 1; // Reset state dropdown
+
+    if (countryDropdown.selectedIndex > 0) {
+      var selectedCountry = countries[countryDropdown.selectedIndex - 1];
+
+      selectedCountry.states.forEach(function(state) {
+        var option = document.createElement("option");
+        option.text = state.name;
+        stateDropdown.add(option);
+      });
+
+      cityDropdown.length = 1; // Reset city dropdown
+    }
+  }
+
+  function updateCityDropdown() {
+    var countryDropdown = document.getElementById("country");
+    var stateDropdown = document.getElementById("state");
+    var cityDropdown = document.getElementById("city");
+
+    cityDropdown.length = 1; // Reset city dropdown
+
+    if (stateDropdown.selectedIndex > 0) {
+      var selectedCountry = countries[countryDropdown.selectedIndex - 1];
+      var selectedState = selectedCountry.states[stateDropdown.selectedIndex - 1];
+
+      selectedState.cities.forEach(function(city) {
+        var option = document.createElement("option");
+        option.text = city;
+        cityDropdown.add(option);
+      });
+    }
+  }
+</script>
+
+</body>
+</html>
